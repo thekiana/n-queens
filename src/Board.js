@@ -89,7 +89,7 @@
         }
         count += row[i];
       }
-      return false; // fixme
+      return false;
     },
 
     // test if any rows on this board contain conflicts
@@ -100,7 +100,7 @@
           return true;
         }
       }
-      return false; // fixme
+      return false;
     },
 
 
@@ -110,12 +110,26 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function (colIndex) {
-      return false; // fixme
+      var rows = this.rows();
+      var count = 0;
+      for (var i = 0; i < rows.length; i++) {
+        if (count > 1) {
+          return true;
+        }
+        count += rows[i][colIndex];
+      }
+      return false;
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function () {
-      return false; // fixme
+      var rows = this.rows();
+      for (var i = 0; i < rows.length; i++) {
+        if (this.hasColConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
     },
 
 
