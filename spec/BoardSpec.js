@@ -9,7 +9,6 @@ describe('Board', function() {
     // The Board() constructor will accept a matrix and build that into a (Backbone) Board object (as defined in Board.js)
     var board = new Board(matrix);
     _.map('row col rooks majorDiagonal minorDiagonal queens'.split(' '), function(conflictType) {
-      // debugger;
       var conflictDetected = board['hasAny' + capitalize(conflictType) + 'Conflicts']();
       var conflictExpected = _(expectedConflicts).contains(conflictType);
       var message = conflictExpected ? 'should' : 'should not';
@@ -20,33 +19,32 @@ describe('Board', function() {
     });
   };
 
-  // describe('Empty board', function() {
-  //   verifyConflictTypes([''], [
-  //     [0, 0, 0, 0],
-  //     [0, 0, 0, 0],
-  //     [0, 0, 0, 0],
-  //     [0, 0, 0, 0]
-  //   ]);
-  // });
+  describe('Empty board', function() {
+    verifyConflictTypes([''], [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0]
+    ]);
+  });
 
-  // describe('Board with row conflicts', function() {
-  //   // debugger;
-  //   verifyConflictTypes(['row', 'rooks', 'queens'], [
-  //     [0, 0, 0, 0],
-  //     [1, 1, 0, 0],
-  //     [0, 0, 0, 0],
-  //     [0, 0, 0, 0]
-  //   ]);
-  // });
+  describe('Board with row conflicts', function() {
+    verifyConflictTypes(['row', 'rooks', 'queens'], [
+      [0, 0, 0, 0],
+      [1, 1, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0]
+    ]);
+  });
 
-  // describe('Board with col conflicts', function() {
-  //   verifyConflictTypes(['col', 'rooks', 'queens'], [
-  //     [1, 0, 0, 0],
-  //     [0, 0, 0, 0],
-  //     [1, 0, 0, 0],
-  //     [0, 0, 0, 0]
-  //   ]);
-  // });
+  describe('Board with col conflicts', function() {
+    verifyConflictTypes(['col', 'rooks', 'queens'], [
+      [1, 0, 0, 0],
+      [0, 0, 0, 0],
+      [1, 0, 0, 0],
+      [0, 0, 0, 0]
+    ]);
+  });
 
   describe('Board with major diagonal conflicts', function() {
     verifyConflictTypes(['majorDiagonal', 'queens'], [
